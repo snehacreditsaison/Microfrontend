@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis</title>
+</head>
+<body>
+
+    <!-- <div id="dsa"></div> -->
+
+    <div id="react"></div>
+
+    <div class="tab" style="display: flex;font-family: Arial, sans-serif;">
+        <div>
+            <button style="height: 50px;" style="margin-left:10px" onclick="openCity(event, 'appform')">AppForm</button>
+            <button style="height: 50px;" style="margin-left:10px" onclick="openCity(event, 'verification')">Verification</button>
+            <button style="height: 50px;" style="margin-left:10px" onclick="openCity(event, 'dedupe')">Dedupe</button>
+        </div>
+        <p style="margin-left:300px">The component below is rendered from <strong style="background-color: yellow;" id="content-span"> </strong></p>
+    </div>
+
+    <!-- appform -->
+    <div id="vue"></div> 
+
+    <!-- verification -->
+    <div id="verification"></div>
+    
+    <!-- dedupe -->
+    <div id="dedupe"></div>
+    
+    <script src="/dist/single-spa.config.js"></script>
+    <script>
+
+        function openCity(event, str) {
+            // let layout = document.getElementById('vue');
+            let appform = document.getElementById('appform');
+            let verification = document.getElementById('verification');
+            let dedupe = document.getElementById('dedupe');
+            var contentSpan = document.getElementById('content-span');
+
+            // Set default display styles
+            if (appform) appform.style.display = 'none';
+            if (verification) verification.style.display = 'none';
+            if (dedupe) dedupe.style.display = 'none';
+
+            // Show the selected section
+            switch (str) {
+                case 'appform':
+                    if (appform) appform.style.display = 'block';
+                        contentSpan.innerHTML = 'Vue';
+                    break;
+                case 'verification':
+                    verification.style.display = 'block';
+                    contentSpan.innerHTML = 'React';
+                    break;
+                case 'dedupe':
+                    if (dedupe) dedupe.style.display = 'block';
+                    contentSpan.innerHTML = 'Vue';
+                    break;
+                default:
+                    console.error('Unknown section:', str);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // set default tab open
+            openCity(null, 'appform');
+        });
+    </script>
+</body>
+</html>
